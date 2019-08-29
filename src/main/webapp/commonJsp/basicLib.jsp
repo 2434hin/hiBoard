@@ -7,7 +7,7 @@
 <%-- <script src="${pageContext.request.contextPath }/js/jquery-3.4.1.min.js"></script> --%>
 
 <!-- el cp contextPath -->
-<script src="${cp }/js/jquery-3.4.1.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/jquery-3.4.1.min.js"></script>
 <link href="${pageContext.request.contextPath }/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Bootstrap core CSS -->
