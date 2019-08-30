@@ -60,8 +60,9 @@
 
 	<!-- 게시글 답글 form -->
 	<form id="replyPostForm" action="${cp }/replyPost" method="get">
-		<input type="hidden" id="deletePostNo" name="deletePostNo" value="${post.postno }"/>
+		<input type="hidden" id="postNo" name="postNo" value="${post.postno }"/>
 		<input type="hidden" id="boardNo" name="boardNo" value="${post.boardno }"/>
+		<input type="hidden" id="postGn" name="postGn" value="${post.postgn }"/>
 	</form>
 
 	<!-- 게시글 수정 form -->

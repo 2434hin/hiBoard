@@ -92,37 +92,35 @@
 			</div>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-				<c:choose>
-					<c:when test="${postNo == null }">
-						<h1>새글 작성</h1>
-					</c:when>
-					<c:otherwise>
-						<h1>답글 작성</h1>
-					</c:otherwise>
-				</c:choose>
+				<h1>게시글 수정</h1>
 
 				<br><br>
 
 				<form action="${cp }/insertPost" method="post" id="frm" enctype="multipart/form-data">
 					<input type="hidden" id="boardNo" name="boardNo" value="${boardno }"/>
 					<input type="hidden" id="parentpostno" name="parentpostno" value="${postNo }"/>
-					<input type="hidden" id="postGn" name="postGn" value="${postGn }"/>
 					<table>
 						<tr>
 							<td>제목</td>
-							<td><input type="text" id="postTitle" name="postTitle" style="width:750px; height:35px;"/></td>
+							<td><input type="text" id="postTitle" name="postTitle" style="width:750px; height:35px;" value="${post.posttitle }"/></td>
 						</tr>
 						<tr>
 							<td>글내용</td>
-							<td><textarea name="postContent" id="smarteditor" rows="10" cols="100" style="width:750px; height:412px;"></textarea></td>
+							<td><textarea name="postContent" id="smarteditor" rows="10" cols="100" style="width:750px; height:412px;">${post.postcontent }</textarea></td>
 						</tr>
 						<tr>
 							<td>첨부파일</td>
-							<td><input type="file" multiple="multiple" id="file" name="file"/></td>
+							<td></td>
 						</tr>
+						<c:forEach items="${fileList}" var="postFile">
+							<tr>
+								<td></td>
+								<td>${postFile.filename}</td>
+							</tr>
+						</c:forEach>
 						<tr>
 							<td></td>
-							<td id="button"><input type="button" id="savebutton" class="btn btn-default pull-right" value="저장" /></td>
+							<td id="button"><input type="button" id="savebutton" class="btn btn-default pull-right" value="수정" /></td>
 						</tr>
 					</table>
 				</form>

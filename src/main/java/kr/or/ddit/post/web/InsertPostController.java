@@ -48,6 +48,7 @@ public class InsertPostController extends HttpServlet {
 		String postTitle = request.getParameter("postTitle");				// 게시글 제목
 		String postContent = request.getParameter("postContent");			// 게시글 내용
 		String parentpostno = request.getParameter("parentpostno");			// 부모게시글 번호
+		String postgn = request.getParameter("postGn");						// 그룹 번호
 
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("S_USERVO");
@@ -57,6 +58,7 @@ public class InsertPostController extends HttpServlet {
 		Post post;
 		int insertCnt = 0;
 		if(parentpostno == null || parentpostno.equals("")) {
+
 			// 세글 작성
 			post = new Post(boardNo, postTitle, postContent, userId);
 
@@ -65,9 +67,10 @@ public class InsertPostController extends HttpServlet {
 		} else {
 			// 답글 작성
 			int parentPostNo = Integer.parseInt(request.getParameter("parentpostno"));
-			post = new Post(boardNo, postTitle, postContent, userId, parentPostNo);
+			int postGn = Integer.parseInt(request.getParameter("postGn"));
+			//post = new Post(boardNo, postTitle, postContent, userId, postGn, parentPostNo);
 
-			insertCnt = postService.insertPostReply(post);
+			//insertCnt = postService.insertPostReply(post);
 		}
 
 		String filename = "";

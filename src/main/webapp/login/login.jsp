@@ -25,13 +25,6 @@
 
 	<script>
 		$(document).ready(function () {
-
-			if(userId != undefined){
-				$('#userId').val(userId);
-
-				$('#pass').focus();
-			}
-
 			//signin btn 클릭 이벤트 핸들러
 			$('#signinBtn').on('click', function () {
 
@@ -53,8 +46,8 @@
 
         <label for="userId" class="sr-only">userId</label>
 
-        <input type="text" id="userId" name="userId"
-        	   class="form-control" placeholder="userId" required autofocus>
+		<input type="text" id="userId" name="userId"
+				class="form-control" value="brown"/>
 
         <label for="pass" class="sr-only">Password</label>
 

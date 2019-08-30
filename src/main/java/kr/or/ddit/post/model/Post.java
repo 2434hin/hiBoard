@@ -11,6 +11,7 @@ public class Post {
 	private String userid;		// 작성자
 	private Date postwdate;		// 작성일시
 	private int deleteyn;		// 삭제여부 (삭제안함 0, 삭제 1)
+	private int postgn;			// 그룹 넘버
 	private int parentpostno;	// 부모게시글번호
 
 	public Post() {}
@@ -77,6 +78,15 @@ public class Post {
 	public void setDeleteyn(int deleteyn) {
 		this.deleteyn = deleteyn;
 	}
+
+	public int getPostgn() {
+		return postgn;
+	}
+
+	public void setPostgn(int postgn) {
+		this.postgn = postgn;
+	}
+
 	public int getParentpostno() {
 		return parentpostno;
 	}
