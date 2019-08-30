@@ -67,13 +67,13 @@
 </head>
 <body>
 	<!-- 생성 form -->
-	<form id="newForm" action="${pageContext.request.contextPath }/boardNew" method="post">
+	<form id="newForm" action="${cp }/boardNew" method="post">
 		<input type="hidden" id="newBoardName" name="newBoardName"/>
 		<input type="hidden" id="newUseYN" name="newUseYN"/>
 	</form>
 
 	<!-- 수정 form -->
-	<form id="modifyForm" action="${pageContext.request.contextPath }/boardModify" method="post">
+	<form id="modifyForm" action="${cp }/boardModify" method="post">
 		<input type="hidden" id="boardNo" name="boardNo"/>
 		<input type="hidden" id="boardNm" name="boardNm"/>
 		<input type="hidden" id="useYN" name="useYN"/>
@@ -121,7 +121,6 @@
 								</select>
 							</td>
 							<td><input type="button" class="btn btn-default pull-right boardModify" data-boardId="${board.boardno}" value="수정"/></td>
-<%-- 							<td><input type="button" class="boardModify" data-boardId="${board.boardno}" value="수정"/></td> --%>
 						</tr>
 					</c:forEach>
 				</table>

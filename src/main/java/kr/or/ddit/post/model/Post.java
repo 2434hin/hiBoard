@@ -10,9 +10,27 @@ public class Post {
 	private String postcontent;	// 게시글 내용
 	private String userid;		// 작성자
 	private Date postwdate;		// 작성일시
-	private int deleteyn;		// 삭제여부
+	private int deleteyn;		// 삭제여부 (삭제안함 0, 삭제 1)
 	private int parentpostno;	// 부모게시글번호
 
+	public Post() {}
+
+	// 새글 작성
+	public Post(int boardNo, String postTitle, String postContent, String userId) {
+		this.boardno = boardNo;
+		this.posttitle = postTitle;
+		this.postcontent = postContent;
+		this.userid = userId;
+	}
+
+	// 답글 작성
+	public Post(int boardNo, String postTitle, String postContent, String userId, int parentpostno) {
+		this.boardno = boardNo;
+		this.posttitle = postTitle;
+		this.postcontent = postContent;
+		this.userid = userId;
+		this.parentpostno = parentpostno;
+	}
 	public int getPostno() {
 		return postno;
 	}

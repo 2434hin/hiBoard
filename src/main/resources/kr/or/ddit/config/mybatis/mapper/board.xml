@@ -19,6 +19,7 @@
   	update hiboard_board set useyn = #{useyn}, boardname = #{boardname} where boardno = #{boardno}
   </update>
 
+  <!-- 게시판 번호에 맞는 게시판 정보 조회 -->
   <select id="getBoard" parameterType="Integer" resultType="board">
   	select * from hiboard_board where boardno = #{boardno}
   </select>

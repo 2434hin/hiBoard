@@ -4,6 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="post">
 
+  <!-- 게시판 번호에 맞는 게시글 페이징 조회 -->
   <select id="getPostList" parameterType="map" resultType="post">
 	select a.*
 	from (select rownum rn, a.*
@@ -14,8 +15,40 @@
 	where rn between #{pagesize}*(#{page}-1) + 1 and #{page}*#{pagesize}
   </select>
 
-   <select id="getPost" parameterType="Integer" resultType="post">
+  <!-- 게시글 상세 정보 조회 -->
+  <select id="getPost" parameterType="Integer" resultType="post">
   	select * from hiboard_post where postno = #{postno}
+  </select>
+
+  <!-- 신규 게시글 등록 -->
+  <insert id="insertPostNew" parameterType="post">
+  	INSERT INTO HIBOARD_POST VALUES(hiboard_post_SEQ.NEXTVAL, #{boardno}, #{posttitle}, #{postcontent}, #{userid}, sysdate, 0, null)
+  </insert>
+
+  <!-- 신규 게시글의 게시글 번호 조회 -->
+  <select id="getPostNo" resultType="Integer">
+  	select max(postNo) from HIBOARD_POST
+  </select>
+
+   <!-- 게시글 삭제 -->
+   <update id="deletePost" parameterType="Integer">
+  	update HIBOARD_POST set DELETEYN = 1 where postno = #{postno}
+  </update>
+
+  <!-- 답글 등록 -->
+  <insert id="insertPostReply" parameterType="post">
+  	INSERT INTO HIBOARD_POST VALUES(hiboard_post_SEQ.NEXTVAL, #{boardno}, #{posttitle}, #{postcontent}, #{userid}, sysdate, 0, #{parentpostno})
+  </insert>
+
+  <!-- File -->
+  <!-- 게시글 첨부파일 등록 -->
+  <insert id="insertPostFile" parameterType="postFile">
+  	INSERT INTO HIBOARD_POSTFILE VALUES(hiboard_postFile_SEQ.NEXTVAL, #{filename}, #{realfilename}, hiboard_post_SEQ.CURRVAL)
+  </insert>
+
+  <!-- 게시글 번호에 맞는 파일 조회 -->
+  <select id="getPostFileList" parameterType="Integer" resultType="postFile">
+  	select * from HIBOARD_POSTFILE where postno = #{postno}
   </select>
 
 </mapper>

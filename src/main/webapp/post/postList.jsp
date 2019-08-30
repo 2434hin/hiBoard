@@ -24,6 +24,13 @@
 	$(document).ready(function () {
 
 		$(".postTr").on('click', function () {
+
+			var deletePost = $(this).children('.noclick').text();
+
+			if(deletePost == "※삭제된 게시글입니다."){
+				return;
+			}
+
 			var dataValue = $(this).data("postno");
 
 			$('#postNo').val(dataValue)
@@ -70,7 +77,14 @@
 								<c:forEach items="${postList}" var="post">
 									<tr class="postTr" data-postNo="${post.postno}">
 										<td>${post.postno}<input type="hidden" value="${post.postno}"/></td>
-										<td>${post.posttitle}</td>
+										<c:choose>
+											<c:when test="${post.deleteyn == 1 }">
+												<td class="noclick">※삭제된 게시글입니다.</td>
+											</c:when>
+											<c:otherwise>
+												<td class="noclick">${post.posttitle}</td>
+											</c:otherwise>
+										</c:choose>
 										<td>${post.userid}</td>
 										<td>${post.postwdateFmt}</td>
 									</tr>
@@ -79,7 +93,7 @@
 							</table>
 						</div>
 
-						<a href="${pageContext.request.contextPath }/postForm?postno=${post.postno}" class="btn btn-default pull-right">새글 등록</a>
+						<a href="${pageContext.request.contextPath }/postForm?boardno=${board.boardno}" class="btn btn-default pull-right">새글 등록</a>
 
 						<div class="text-center">
 							<ul class="pagination">

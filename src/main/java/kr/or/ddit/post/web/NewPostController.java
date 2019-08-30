@@ -13,9 +13,9 @@ public class NewPostController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//int postNo = Integer.parseInt(request.getParameter("postno"));
+		int boardno = Integer.parseInt(request.getParameter("boardno"));
 
-		//request.setAttribute("postNo", postNo);
+		request.setAttribute("boardno", boardno);
 
 		request.getRequestDispatcher("/post/postForm.jsp").forward(request, response);
 	}
