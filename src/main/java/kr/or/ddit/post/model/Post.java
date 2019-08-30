@@ -25,11 +25,12 @@ public class Post {
 	}
 
 	// 답글 작성
-	public Post(int boardNo, String postTitle, String postContent, String userId, int parentpostno) {
+	public Post(int boardNo, String postTitle, String postContent, String userId, int postgn, int parentpostno) {
 		this.boardno = boardNo;
 		this.posttitle = postTitle;
 		this.postcontent = postContent;
 		this.userid = userId;
+		this.postgn = postgn;
 		this.parentpostno = parentpostno;
 	}
 	public int getPostno() {

@@ -68,9 +68,9 @@ public class InsertPostController extends HttpServlet {
 			// 답글 작성
 			int parentPostNo = Integer.parseInt(request.getParameter("parentpostno"));
 			int postGn = Integer.parseInt(request.getParameter("postGn"));
-			//post = new Post(boardNo, postTitle, postContent, userId, postGn, parentPostNo);
+			post = new Post(boardNo, postTitle, postContent, userId, postGn, parentPostNo);
 
-			//insertCnt = postService.insertPostReply(post);
+			insertCnt = postService.insertPostNew(post);
 		}
 
 		String filename = "";

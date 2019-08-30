@@ -22,7 +22,7 @@
 
   <!-- 신규 게시글 등록 -->
   <insert id="insertPostNew" parameterType="post">
-  	INSERT INTO HIBOARD_POST VALUES(hiboard_post_SEQ.NEXTVAL, #{boardno}, #{posttitle}, #{postcontent}, #{userid}, sysdate, 0, case when #{postno} = 0 then hiboard_post_SEQ.currval else #{postno} end, case when #{parentpostno} is null then null else #{parentpostno} end)
+  	INSERT INTO HIBOARD_POST VALUES(hiboard_post_SEQ.NEXTVAL, #{boardno}, #{posttitle}, #{postcontent}, #{userid}, sysdate, 0, case when #{postno} = 0 then hiboard_post_SEQ.currval else #{postno} end, case when NVL(#{parentpostno},0) = 0 then NULL else #{parentpostno} end)
   </insert>
 
   <!-- 신규 게시글의 게시글 번호 조회 -->
