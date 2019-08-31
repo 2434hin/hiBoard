@@ -36,7 +36,7 @@ public interface IPostDao {
 
 	/**
 	 *
-	 * Method : insertPostNew
+	 * Method : insertPost
 	 * 작성자 : PC-11
 	 * 변경이력 :
 	 * @param sqlSession
@@ -44,7 +44,7 @@ public interface IPostDao {
 	 * @return
 	 * Method 설명 : 새글작성
 	 */
-	int insertPostNew(SqlSession sqlSession, Post post);
+	int insertPost(SqlSession sqlSession, Post post);
 
 	/**
 	 *
@@ -95,14 +95,14 @@ public interface IPostDao {
 
 	/**
 	 *
-	 * Method : insertPostReply
+	 * Method : updatePost
 	 * 작성자 : PC-11
 	 * 변경이력 :
 	 * @param sqlSession
 	 * @param post
 	 * @return
-	 * Method 설명 : 답글작성
+	 * Method 설명 : 게시글 수정
 	 */
-	int insertPostReply(SqlSession sqlSession, Post post);
+	int updatePost(SqlSession sqlSession, Post post);
 
 }

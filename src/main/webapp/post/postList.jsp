@@ -79,10 +79,18 @@
 										<td>${post.postno}<input type="hidden" value="${post.postno}"/></td>
 										<c:choose>
 											<c:when test="${post.deleteyn == 1 }">
-												<td class="noclick">※삭제된 게시글입니다.</td>
+												<td class="noclick">
+												<c:forEach begin="0" end="${post.level }">
+													&nbsp;
+												</c:forEach>
+												<span class="glyphicon glyphicon-hand-right"></span>※삭제된 게시글입니다.</td>
 											</c:when>
 											<c:otherwise>
-												<td class="noclick">${post.posttitle}</td>
+												<td class="noclick">
+												<c:forEach begin="0" end="${(post.level-1)*2 }">
+													&nbsp;
+												</c:forEach>
+												<span class="glyphicon glyphicon-hand-right"></span>${post.posttitle}</td>
 											</c:otherwise>
 										</c:choose>
 										<td>${post.userid}</td>

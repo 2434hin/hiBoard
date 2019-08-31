@@ -10,6 +10,7 @@
   	<typeAlias alias="board" type="kr.or.ddit.board.model.Board"/>
   	<typeAlias alias="post" type="kr.or.ddit.post.model.Post"/>
   	<typeAlias alias="postFile" type="kr.or.ddit.post.model.PostFile"/>
+  	<typeAlias alias="reply" type="kr.or.ddit.reply.model.Reply"/>
   </typeAliases>
 
   <environments default="development">
@@ -27,5 +28,6 @@
     <mapper resource="kr/or/ddit/config/mybatis/mapper/user.xml"/>
     <mapper resource="kr/or/ddit/config/mybatis/mapper/board.xml"/>
     <mapper resource="kr/or/ddit/config/mybatis/mapper/post.xml"/>
+    <mapper resource="kr/or/ddit/config/mybatis/mapper/reply.xml"/>
   </mappers>
 </configuration>

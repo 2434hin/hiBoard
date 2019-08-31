@@ -32,14 +32,14 @@ public interface IPostService {
 
 	/**
 	 *
-	 * Method : insertPostNew
+	 * Method : insertPost
 	 * 작성자 : PC-11
 	 * 변경이력 :
 	 * @param post
 	 * @return
 	 * Method 설명 : 새글작성
 	 */
-	int insertPostNew(Post post);
+	int insertPost(Post post);
 
 	/**
 	 *
@@ -86,13 +86,14 @@ public interface IPostService {
 
 	/**
 	 *
-	 * Method : insertPostReply
+	 * Method : updatePost
 	 * 작성자 : PC-11
 	 * 변경이력 :
 	 * @param post
 	 * @return
-	 * Method 설명 : 답글 작성
+	 * Method 설명 : 게시글 수정
 	 */
-	int insertPostReply(Post post);
+	int updatePost(Post post);
+
 
 }

@@ -46,7 +46,18 @@
 		$("#modifyBtn").on('click', function () {
 			$('#updatePostForm').submit();
 		})
+
+		$(".replySpan").on('click', function () {
+
+			var dataValue = $(this).data("replyno");
+
+			$('#replyNo').val(dataValue)
+
+			$('#deleteReplyForm').submit();
+		})
 	})
+
+
 </script>
 
 </head>
@@ -70,6 +81,11 @@
 		<input type="hidden" id="postNo" name="postNo" value="${post.postno }"/>
 	</form>
 
+	<!-- 답글 삭제 -->
+	<form id="deleteReplyForm" action="${cp }/deleteReply" method="get">
+		<input type="hidden" id="postNo" name="postNo" value="${post.postno }"/>
+		<input type="hidden" id="replyNo" name="replyNo"/>
+	</form>
 	<!-- header -->
 	<%@ include file="/commonJsp/header.jsp"%>
 
@@ -86,7 +102,7 @@
 
 				<br><br>
 
-				<form action="result.jsp" method="post" id="frm">
+				<form action="${cp }/insertReply" method="post" id="frm">
 					<table>
 						<tr>
 							<td>제목</td>
@@ -123,9 +139,40 @@
 							</td>
 						</tr>
 						<tr>
-							<td>댓글</td>
 							<td></td>
 						</tr>
+						<tr>
+							<td>댓글</td>
+							<td>
+								<div class="col-sm-8">
+									<input type="text" id="postReply" class="form-control" name="postReply"/>
+									<input type="hidden" id="postNo" name="postNo" value="${post.postno }"/>
+								</div>
+								<div class="col-sm-2">
+									<input type="submit" id="reply" class="btn btn-default pull-right" value="댓글등록" >
+								</div>
+							</td>
+						</tr>
+						<c:forEach items="${replyList}" var="reply">
+							<tr>
+								<td></td>
+								<td>
+									<div class="col-sm-8">
+									<c:choose>
+										<c:when test="${reply.deleteyn == 1 }">
+											<label>※삭제된 댓글입니다.</label>
+										</c:when>
+										<c:otherwise>
+											<label>${reply.replycontent}</label>
+										</c:otherwise>
+									</c:choose>
+									</div>
+									<div class="col-sm-4">
+										<label>&nbsp;&nbsp;&nbsp;&nbsp;[${reply.userid} / ${reply.replywdateFmt}]&nbsp;&nbsp;<span class="replySpan glyphicon glyphicon-remove" data-replyNo="${reply.replytno}" ></span></label>
+									</div>
+								</td>
+							</tr>
+						</c:forEach>
 					</table>
 				</form>
 

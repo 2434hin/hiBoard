@@ -42,7 +42,7 @@ public class PostDao implements IPostDao {
 
 	/**
 	 *
-	 * Method : insertPostNew
+	 * Method : insertPost
 	 * 작성자 : PC-11
 	 * 변경이력 :
 	 * @param sqlSession
@@ -51,8 +51,8 @@ public class PostDao implements IPostDao {
 	 * Method 설명 : 새글 작성
 	 */
 	@Override
-	public int insertPostNew(SqlSession sqlSession, Post post) {
-		return sqlSession.insert("post.insertPostNew", post);
+	public int insertPost(SqlSession sqlSession, Post post) {
+		return sqlSession.insert("post.insertPost", post);
 	}
 
 	/**
@@ -116,17 +116,17 @@ public class PostDao implements IPostDao {
 
 	/**
 	 *
-	 * Method : insertPostReply
+	 * Method : updatePost
 	 * 작성자 : PC-11
 	 * 변경이력 :
 	 * @param sqlSession
 	 * @param post
 	 * @return
-	 * Method 설명 : 답글작성
+	 * Method 설명 : 게시글 수정
 	 */
 	@Override
-	public int insertPostReply(SqlSession sqlSession, Post post) {
-		return sqlSession.insert("post.insertPostReply", post);
+	public int updatePost(SqlSession sqlSession, Post post) {
+		return sqlSession.update("post.updatePost", post);
 	}
 
 }

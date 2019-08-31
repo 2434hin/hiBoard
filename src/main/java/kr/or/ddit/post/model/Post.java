@@ -13,6 +13,7 @@ public class Post {
 	private int deleteyn;		// 삭제여부 (삭제안함 0, 삭제 1)
 	private int postgn;			// 그룹 넘버
 	private int parentpostno;	// 부모게시글번호
+	private int level;
 
 	public Post() {}
 
@@ -93,6 +94,14 @@ public class Post {
 	}
 	public void setParentpostno(int parentpostno) {
 		this.parentpostno = parentpostno;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
 	}
 
 }

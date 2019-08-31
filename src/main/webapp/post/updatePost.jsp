@@ -41,7 +41,7 @@
 		});
 
 		// 전송버튼 클릭이벤트
-		$("#savebutton").click(function(){
+		$("#updateButton").click(function(){
 			if(confirm("저장하시겠습니까?")) {
 				// id가 smarteditor인 textarea에 에디터에서 대입
 				oEditors.getById["smarteditor"].exec("UPDATE_CONTENTS_FIELD", []);
@@ -96,9 +96,8 @@
 
 				<br><br>
 
-				<form action="${cp }/insertPost" method="post" id="frm" enctype="multipart/form-data">
-					<input type="hidden" id="boardNo" name="boardNo" value="${boardno }"/>
-					<input type="hidden" id="parentpostno" name="parentpostno" value="${postNo }"/>
+				<form action="${cp }/updatePost" method="post" id="frm" enctype="multipart/form-data">
+					<input type="hidden" id="postNo" name="postNo" value="${post.postno }"/>
 					<table>
 						<tr>
 							<td>제목</td>
@@ -120,7 +119,7 @@
 						</c:forEach>
 						<tr>
 							<td></td>
-							<td id="button"><input type="button" id="savebutton" class="btn btn-default pull-right" value="수정" /></td>
+							<td id="button"><input type="button" id="updateButton" class="btn btn-default pull-right" value="수정" /></td>
 						</tr>
 					</table>
 				</form>

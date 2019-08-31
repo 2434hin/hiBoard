@@ -57,7 +57,7 @@ public class PostService implements IPostService {
 
 	/**
 	 *
-	 * Method : insertPostNew
+	 * Method : insertPost
 	 * 작성자 : PC-11
 	 * 변경이력 :
 	 * @param post
@@ -65,9 +65,9 @@ public class PostService implements IPostService {
 	 * Method 설명 : 새글 작성
 	 */
 	@Override
-	public int insertPostNew(Post post) {
+	public int insertPost(Post post) {
 		SqlSession sqlSession = MybatisUtil.getSession();
-		int insertCnt = postDao.insertPostNew(sqlSession, post);
+		int insertCnt = postDao.insertPost(sqlSession, post);
 		sqlSession.commit();
 		sqlSession.close();
 		return insertCnt;
@@ -145,20 +145,21 @@ public class PostService implements IPostService {
 
 	/**
 	 *
-	 * Method : insertPostReply
+	 * Method : updatePost
 	 * 작성자 : PC-11
 	 * 변경이력 :
 	 * @param post
 	 * @return
-	 * Method 설명 : 답글 작성
+	 * Method 설명 : 게시글 수정
 	 */
 	@Override
-	public int insertPostReply(Post post) {
+	public int updatePost(Post post) {
 		SqlSession sqlSession = MybatisUtil.getSession();
-		int insertCnt = postDao.insertPostReply(sqlSession, post);
+		int updatePost = postDao.updatePost(sqlSession, post);
 		sqlSession.commit();
 		sqlSession.close();
-		return insertCnt;
+		return updatePost;
 	}
+
 
 }
