@@ -119,14 +119,14 @@
 									<c:when test="${page == 1 }">
 										<li class="disabled">
 									      <a href="#" aria-label="Previous">
-									        <span aria-hidden="true">&laquo;</span>
+									        <span aria-hidden="true">&lt;&lt;</span>
 									      </a>
 									    </li>
 									</c:when>
 									<c:otherwise>
 										<li>
 									     	<a href="${cp }/boardPost?page=1&boardno=${board.boardno}" aria-label="Previous">
-									        <span aria-hidden="true">&laquo;</span>
+									        <span aria-hidden="true">&lt;&lt;</span>
 									      </a>
 									    </li>
 									</c:otherwise>
@@ -135,14 +135,14 @@
 									<c:when test="${page == 1 }">
 										<li class="disabled">
 									      <a href="#" aria-label="Previous">
-									        <span aria-hidden="true">&laquo;</span>
+									        <span aria-hidden="true">&lt;</span>
 									      </a>
 									    </li>
 									</c:when>
 									<c:otherwise>
 										<li>
 									     	<a href="${cp }/boardPost?page=${page-1 }&boardno=${board.boardno}" aria-label="Previous">
-									        <span aria-hidden="true">&laquo;</span>
+									        <span aria-hidden="true">&lt;</span>
 									      </a>
 									    </li>
 									</c:otherwise>
@@ -165,14 +165,14 @@
 									<c:when test="${page == paginationSize }">
 									    <li class="disabled">
 									      <a href="#" aria-label="Next">
-									        <span aria-hidden="true">&raquo;</span>
+									        <span aria-hidden="true">&gt;</span>
 									      </a>
 									    </li>
 									</c:when>
 									<c:otherwise>
 										<li>
 									      	<a href="${cp }/boardPost?page=${page+1 }&boardno=${board.boardno}" aria-label="Next">
-									        <span aria-hidden="true">&raquo;</span>
+									        <span aria-hidden="true">&gt;</span>
 									      </a>
 									    </li>
 									</c:otherwise>
@@ -181,14 +181,14 @@
 									<c:when test="${page == paginationSize }">
 									    <li class="disabled">
 									      <a href="#" aria-label="Next">
-									        <span aria-hidden="true">&raquo;</span>
+									        <span aria-hidden="true">&gt;&gt;</span>
 									      </a>
 									    </li>
 									</c:when>
 									<c:otherwise>
 										<li>
 									      	<a href="${cp }/boardPost?page=${paginationSize }&boardno=${board.boardno}" aria-label="Next">
-									        <span aria-hidden="true">&raquo;</span>
+									        <span aria-hidden="true">&gt;&gt;</span>
 									      </a>
 									    </li>
 									</c:otherwise>
