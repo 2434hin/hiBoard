@@ -27,9 +27,19 @@ public class BoardNewController extends HttpServlet {
 		boardService = new BoardService();
 	}
 
+	/**
+	 *
+	 * Method : doGet
+	 * 작성자 : PC-11
+	 * 변경이력 :
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 * Method 설명 : 게시판 생성 화면 요청 처리
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// 게시판 생성
 		// 전체 게시판 목록 조회
 		List<Board> boardList = boardService.getBoardList();
 
@@ -38,20 +48,36 @@ public class BoardNewController extends HttpServlet {
 		request.getRequestDispatcher("/board/boardNew.jsp").forward(request, response);
 	}
 
+	/**
+	 *
+	 * Method : doPost
+	 * 작성자 : PC-11
+	 * 변경이력 :
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 * Method 설명 : 게시판 생성
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// 게시판 생성
 		// 게시판 생성 버튼 클릭 시
 		request.setCharacterEncoding("UTF-8");
 
-		String boardName = request.getParameter("newBoardName");
-		int useYN = Integer.parseInt(request.getParameter("newUseYN"));
+		String boardName = request.getParameter("newBoardName");		// 새로운 게시판 이름
+		int useYN = Integer.parseInt(request.getParameter("newUseYN"));	// 새로운 게시판 사용여부
 
 		Board board = new Board(boardName, useYN);
 
-		boardService.insertBoard(board);
+		int insertCnt = boardService.insertBoard(board);	// 게시판 insert
 
-		doGet(request, response);
+		if(insertCnt > 0) {
+			// 게시판 생성 성공 시
+			// 게시판 생성 후 게시판 생성 화면으로 이동
+			doGet(request, response);
+		}else {
+			doGet(request, response);
+		}
 	}
 
 }

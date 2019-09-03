@@ -129,4 +129,49 @@ public class PostDao implements IPostDao {
 		return sqlSession.update("post.updatePost", post);
 	}
 
+	/**
+	 *
+	 * Method : deleteFile
+	 * 작성자 : PC-11
+	 * 변경이력 :
+	 * @param sqlSession
+	 * @param fileNo
+	 * @return
+	 * Method 설명 : 파일 삭제
+	 */
+	@Override
+	public int deleteFile(SqlSession sqlSession, int fileNo) {
+		return sqlSession.update("post.deleteFile", fileNo);
+	}
+
+	/**
+	 *
+	 * Method : getPostTotalCnt
+	 * 작성자 : PC-11
+	 * 변경이력 :
+	 * @param sqlSession
+	 * @param boardNo
+	 * @return
+	 * Method 설명 : 전체 게시글 건수 조회
+	 */
+	@Override
+	public int getPostTotalCnt(SqlSession sqlSession, int boardNo) {
+		return sqlSession.selectOne("post.getPostTotalCnt", boardNo);
+	}
+
+	/**
+	 *
+	 * Method : getPostFile
+	 * 작성자 : PC-11
+	 * 변경이력 :
+	 * @param sqlSession
+	 * @param fileNo
+	 * @return
+	 * Method 설명 : 선택한 파일 정보 조회
+	 */
+	@Override
+	public PostFile getPostFile(SqlSession sqlSession, int fileNo) {
+		return sqlSession.selectOne("post.getPostFile", fileNo);
+	}
+
 }

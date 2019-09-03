@@ -95,19 +95,19 @@
 						<td>게시판 이름</td>
 						<td><input type="text" id="newBoardNm" name="newBoardNm"/></td>
 						<td>
-							<select id="newBoardYN">
+							<select id="newBoardYN" class="selectpicker">
 								<option value="0">사용</option>
 								<option value="1">미사용</option>
 							</select>
 						</td>
-						<td><input type="button" id="newBoard" class="btn btn-default pull-right" value="생성"/></td>
+						<td><input type="button" id="newBoard" class="btn btn-primary" value="생성"/></td>
 					</tr>
 					<c:forEach items="${boardList}" var="board">
 						<tr class="boardTr">
 							<td>게시판 이름</td>
 							<td><input type="text" class="boardName" value="${board.boardname}"/></td>
 							<td>
-								<select class="boardYN">
+								<select class="boardYN" class="selectpicker">
 									<c:choose>
 										<c:when test="${board.useyn == 0}">
 											<option value="0" selected>사용</option>
@@ -120,7 +120,7 @@
 									</c:choose>
 								</select>
 							</td>
-							<td><input type="button" class="btn btn-default pull-right boardModify" data-boardId="${board.boardno}" value="수정"/></td>
+							<td><input type="button" class="btn btn-success boardModify" data-boardId="${board.boardno}" value="수정"/></td>
 						</tr>
 					</c:forEach>
 				</table>

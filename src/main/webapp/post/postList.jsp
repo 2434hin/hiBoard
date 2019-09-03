@@ -25,9 +25,9 @@
 
 		$(".postTr").on('click', function () {
 
-			var deletePost = $(this).children('.noclick').text();
+			var deletePost = $(this).data('deleteyn');
 
-			if(deletePost == "※삭제된 게시글입니다."){
+			if(deletePost == 1){
 				return;
 			}
 
@@ -75,22 +75,28 @@
 								</tr>
 
 								<c:forEach items="${postList}" var="post">
-									<tr class="postTr" data-postNo="${post.postno}">
+									<tr class="postTr" data-postNo="${post.postno}" data-deleteYN="${post.deleteyn}">
 										<td>${post.postno}<input type="hidden" value="${post.postno}"/></td>
 										<c:choose>
 											<c:when test="${post.deleteyn == 1 }">
-												<td class="noclick">
-												<c:forEach begin="0" end="${post.level }">
-													&nbsp;
-												</c:forEach>
-												<span class="glyphicon glyphicon-hand-right"></span>※삭제된 게시글입니다.</td>
-											</c:when>
-											<c:otherwise>
-												<td class="noclick">
+												<td>
 												<c:forEach begin="0" end="${(post.level-1)*2 }">
 													&nbsp;
 												</c:forEach>
-												<span class="glyphicon glyphicon-hand-right"></span>${post.posttitle}</td>
+												<c:if test="${post.parentpostno != 0 }">
+													<span class="glyphicon glyphicon-hand-right"></span>
+												</c:if>
+												[삭제된 게시글입니다.]</td>
+											</c:when>
+											<c:otherwise>
+												<td><a href="#">
+												<c:forEach begin="0" end="${(post.level-1)*2 }">
+													&nbsp;
+												</c:forEach>
+												<c:if test="${post.parentpostno != 0 }">
+													<span class="glyphicon glyphicon-hand-right"></span>
+												</c:if>
+												${post.posttitle}</a></td>
 											</c:otherwise>
 										</c:choose>
 										<td>${post.userid}</td>
@@ -101,7 +107,7 @@
 							</table>
 						</div>
 
-						<a href="${pageContext.request.contextPath }/postForm?boardno=${board.boardno}" class="btn btn-default pull-right">새글 등록</a>
+						<a href="${cp }/postForm?boardno=${board.boardno}" class="btn btn-info pull-right">새글 등록</a>
 
 						<div class="text-center">
 							<ul class="pagination">
@@ -119,7 +125,23 @@
 									</c:when>
 									<c:otherwise>
 										<li>
-									      <a href="${cp }/userPagingList?page=${page-1 }" aria-label="Previous">
+									     	<a href="${cp }/boardPost?page=1&boardno=${board.boardno}" aria-label="Previous">
+									        <span aria-hidden="true">&laquo;</span>
+									      </a>
+									    </li>
+									</c:otherwise>
+								</c:choose>
+								<c:choose>
+									<c:when test="${page == 1 }">
+										<li class="disabled">
+									      <a href="#" aria-label="Previous">
+									        <span aria-hidden="true">&laquo;</span>
+									      </a>
+									    </li>
+									</c:when>
+									<c:otherwise>
+										<li>
+									     	<a href="${cp }/boardPost?page=${page-1 }&boardno=${board.boardno}" aria-label="Previous">
 									        <span aria-hidden="true">&laquo;</span>
 									      </a>
 									    </li>
@@ -133,7 +155,7 @@
 											<li	class="active"><span>${pageSize }</span></li>
 										</c:when>
 										<c:otherwise>
-											<li><a href="${cp }/userPagingList?page=${pageSize }">${pageSize }</a></li>
+											<li><a href="${cp }/boardPost?page=${pageSize }&boardno=${board.boardno}">${pageSize }</a></li>
 										</c:otherwise>
 									</c:choose>
 
@@ -149,7 +171,23 @@
 									</c:when>
 									<c:otherwise>
 										<li>
-									      <a href="${cp }/userPagingList?page=${page+1 }" aria-label="Next">
+									      	<a href="${cp }/boardPost?page=${page+1 }&boardno=${board.boardno}" aria-label="Next">
+									        <span aria-hidden="true">&raquo;</span>
+									      </a>
+									    </li>
+									</c:otherwise>
+								</c:choose>
+								<c:choose>
+									<c:when test="${page == paginationSize }">
+									    <li class="disabled">
+									      <a href="#" aria-label="Next">
+									        <span aria-hidden="true">&raquo;</span>
+									      </a>
+									    </li>
+									</c:when>
+									<c:otherwise>
+										<li>
+									      	<a href="${cp }/boardPost?page=${paginationSize }&boardno=${board.boardno}" aria-label="Next">
 									        <span aria-hidden="true">&raquo;</span>
 									      </a>
 									    </li>

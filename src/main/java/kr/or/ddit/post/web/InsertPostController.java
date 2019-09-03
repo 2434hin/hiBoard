@@ -28,8 +28,6 @@ import kr.or.ddit.util.FileuploadUtil;
 public class InsertPostController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private static final Logger logger = LoggerFactory.getLogger(InsertPostController.class);
-
 	private IPostService postService;
 
 	@Override
@@ -37,19 +35,27 @@ public class InsertPostController extends HttpServlet {
 		postService = new PostService();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	}
-
+	/**
+	 *
+	 * Method : doPost
+	 * 작성자 : PC-11
+	 * 변경이력 :
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 * Method 설명 : 게시글 신규, 답글생성
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		request.setCharacterEncoding("UTF-8");
+
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));	// 게시판 번호
 		String postTitle = request.getParameter("postTitle");				// 게시글 제목
 		String postContent = request.getParameter("postContent");			// 게시글 내용
 		String parentpostno = request.getParameter("parentpostno");			// 부모게시글 번호
-		String postgn = request.getParameter("postGn");						// 그룹 번호
 
+		// 로그인한 유저 정보 조회
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("S_USERVO");
 
@@ -64,13 +70,15 @@ public class InsertPostController extends HttpServlet {
 			insertCnt = postService.insertPost(post);
 
 		} else {
+
 			// 답글 작성
-			int parentPostNo = Integer.parseInt(request.getParameter("parentpostno"));
-			int postGn = Integer.parseInt(request.getParameter("postGn"));
+			int parentPostNo = Integer.parseInt(request.getParameter("parentpostno"));	// 부모게시글 번호
+			int postGn = Integer.parseInt(request.getParameter("postGn"));				// 그룹 번호
 			post = new Post(boardNo, postTitle, postContent, userId, postGn, parentPostNo);
 			insertCnt = postService.insertPost(post);
 		}
 
+		// 글 작성 시 저장한 파일 insert
 		String filename = "";
 		String path = "";
 		Collection<Part> file = request.getParts();
@@ -84,6 +92,7 @@ public class InsertPostController extends HttpServlet {
 
 					p.write(path);
 
+					// 파일 insert
 					PostFile postFile = new PostFile(filename, path);
 					postService.insertPostFile(postFile);
 				}
@@ -92,12 +101,11 @@ public class InsertPostController extends HttpServlet {
 
 		// 게시글 작성 성공 시
 		if(insertCnt > 0) {
-			int postNo = postService.getPostNo();
-			response.sendRedirect(request.getContextPath() + "/post?postNo=" + postNo);
-		}else {
-			doGet(request, response);
-		}
+			int postNo = postService.getPostNo();	// 신규 게시글 번호 얻어오기
 
+			// 게시글 생성 후 게시글 상세정보 jsp로 이동
+			response.sendRedirect(request.getContextPath() + "/post?postNo=" + postNo);
+		}
 	}
 
 }

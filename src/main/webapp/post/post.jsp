@@ -47,14 +47,15 @@
 			$('#updatePostForm').submit();
 		})
 
-		$(".replySpan").on('click', function () {
+		$('.replySpan').on('click', function () {
 
-			var dataValue = $(this).data("replyno");
+			var dataValue = $(this).data('replyno');
 
 			$('#replyNo').val(dataValue)
 
 			$('#deleteReplyForm').submit();
 		})
+
 	})
 
 
@@ -86,6 +87,7 @@
 		<input type="hidden" id="postNo" name="postNo" value="${post.postno }"/>
 		<input type="hidden" id="replyNo" name="replyNo"/>
 	</form>
+
 	<!-- header -->
 	<%@ include file="/commonJsp/header.jsp"%>
 
@@ -106,11 +108,11 @@
 					<table>
 						<tr>
 							<td>제목</td>
-							<td><div style="width:760px; height:35px; border: 1px solid; padding-top: 5px">${post.posttitle }</div></td>
+							<td>${post.posttitle }</td>
 						</tr>
 						<tr>
 							<td>글내용</td>
-							<td><div style="width:760px; height:412px; border: 1px solid">${post.postcontent }</div></td>
+							<td>${post.postcontent }</td>
 						</tr>
 						<tr>
 							<td>첨부파일</td>
@@ -119,20 +121,24 @@
 						<c:forEach items="${fileList}" var="postFile">
 							<tr>
 								<td></td>
-								<td>${postFile.filename}</td>
+								<td>${postFile.filename}&nbsp;&nbsp;<a href="${cp }/fileDownload?fileNo=${postFile.fileno}" download="${postFile.filename }"><span class="glyphicon glyphicon-cloud-download"></span></a></td>
 							</tr>
 						</c:forEach>
 						<tr>
 							<td></td>
 							<td id="button">
 								<c:choose>
+										<c:when test="${reply.userId == S_USERVO.userId }">
+        									<span id = deleteIcon class="glyphicon glyphicon-remove"></span><br>
+     									</c:when>
+
 									<c:when test="${post.userid == S_USERVO.userId }">
-										<input type="button" id="replyPostBtn" class="btn btn-default pull-right" value="답글" />
-										<input type="button" id="modifyBtn" class="btn btn-default pull-right" value="수정" />
-										<input type="button" id="deleteBtn" class="btn btn-default pull-right" value="삭제" />
+										<input type="button" id="replyPostBtn" class="btn btn-primary pull-right" value="답글" />
+										<input type="button" id="modifyBtn" class="btn btn-warning pull-right" value="수정" />
+										<input type="button" id="deleteBtn" class="btn btn-danger pull-right" value="삭제" />
 									</c:when>
 									<c:otherwise>
-										<input type="button" id="replyPostBtn" class="btn btn-default pull-right" value="답글" />
+										<input type="button" id="replyPostBtn" class="btn btn-primary pull-right" value="답글" />
 									</c:otherwise>
 								</c:choose>
 
@@ -143,13 +149,13 @@
 						</tr>
 						<tr>
 							<td>댓글</td>
-							<td>
+							<td style="width: 750px;">
 								<div class="col-sm-8">
-									<input type="text" id="postReply" class="form-control" name="postReply"/>
+									<input type="text" id="postReply" class="form-control" name="postReply" maxlength="500"/>
 									<input type="hidden" id="postNo" name="postNo" value="${post.postno }"/>
 								</div>
 								<div class="col-sm-2">
-									<input type="submit" id="reply" class="btn btn-default pull-right" value="댓글등록" >
+									<input type="submit" id="reply" class="btn btn-info pull-right" value="댓글등록" >
 								</div>
 							</td>
 						</tr>
@@ -168,7 +174,18 @@
 									</c:choose>
 									</div>
 									<div class="col-sm-4">
-										<label>&nbsp;&nbsp;&nbsp;&nbsp;[${reply.userid} / ${reply.replywdateFmt}]&nbsp;&nbsp;<span class="replySpan glyphicon glyphicon-remove" data-replyNo="${reply.replytno}" ></span></label>
+										<c:choose>
+											<c:when test="${reply.userid == S_USERVO.userId }">
+												<label>&nbsp;&nbsp;&nbsp;&nbsp;[${reply.userid} / ${reply.replywdateFmt}]
+												<c:if test="${reply.deleteyn != 1 }">
+													&nbsp;&nbsp;<a href="#"><span class="replySpan glyphicon glyphicon-remove" data-replyNo="${reply.replytno}" ></span></a>
+												</c:if>
+												</label>
+											</c:when>
+											<c:otherwise>
+												<label>&nbsp;&nbsp;&nbsp;&nbsp;[${reply.userid} / ${reply.replywdateFmt}]</label>
+											</c:otherwise>
+										</c:choose>
 									</div>
 								</td>
 							</tr>

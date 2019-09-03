@@ -24,6 +24,17 @@ public class BoardModifyController extends HttpServlet {
 		boardService = new BoardService();
 	}
 
+	/**
+	 *
+	 * Method : doGet
+	 * 작성자 : PC-11
+	 * 변경이력 :
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 * Method 설명 : 게시판 생성 화면 요청 처리
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// 게시판 생성
@@ -36,22 +47,34 @@ public class BoardModifyController extends HttpServlet {
 
 	}
 
+	/**
+	 *
+	 * Method : doPost
+	 * 작성자 : PC-11
+	 * 변경이력 :
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 * Method 설명 : 게시판 수정
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 게시판 생성
 		// 게시판 수정 버튼 클릭 시
 		request.setCharacterEncoding("UTF-8");
 
-		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
-		String boardName = request.getParameter("boardNm");
-		int useYN = Integer.parseInt(request.getParameter("useYN"));
+		int boardNo = Integer.parseInt(request.getParameter("boardNo"));	// 게시판 번호
+		String boardName = request.getParameter("boardNm");					// 게시판 이름
+		int useYN = Integer.parseInt(request.getParameter("useYN"));		// 게시팡 사용여부
 
 		Board board = new Board();
 		board.setBoardno(boardNo);
 		board.setBoardname(boardName);
 		board.setUseyn(useYN);
 
+		// 게시판 수정
 		boardService.updateBoard(board);
 
+		// 게시판 생성 메뉴로 이동
 		doGet(request, response);
 	}
 

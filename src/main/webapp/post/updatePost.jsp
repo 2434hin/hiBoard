@@ -52,6 +52,30 @@
 				}
 			}
 		})
+
+		$('.fileSpan').on('click', function () {
+
+			var dataValue = $(this).data('fileno');
+
+			$('#fileNo').val(dataValue);
+			$('#deleteFileForm').submit();
+		});
+
+        $("input[type=file]").change(function () {
+
+            var fileInput = document.getElementById("file");
+
+            var files = fileInput.files;
+
+            var uploadFile = $('.fileSpan').length;
+
+            if((files.length + uploadFile) > 5){
+            	alert("파일은 5개까지 업로드할 수있습니다.");
+            	$('#file').val("");
+            }
+
+        });
+
 	});
 
 	// 필수값 Check
@@ -80,6 +104,12 @@
 
 <body>
 
+	<!-- 파일 삭제 -->
+	<form id="deleteFileForm" action="${cp }/deletePost" method="post">
+		<input type="hidden" id="fileNo" name="fileNo"/>
+		<input type="hidden" id="postNo" name="postNo" value="${post.postno }"/>
+	</form>
+
 	<!-- header -->
 	<%@ include file="/commonJsp/header.jsp"%>
 
@@ -101,7 +131,7 @@
 					<table>
 						<tr>
 							<td>제목</td>
-							<td><input type="text" id="postTitle" name="postTitle" style="width:750px; height:35px;" value="${post.posttitle }"/></td>
+							<td><input type="text" id="postTitle" name="postTitle" style="width:760px; height:35px;" value="${post.posttitle }"/></td>
 						</tr>
 						<tr>
 							<td>글내용</td>
@@ -114,9 +144,13 @@
 						<c:forEach items="${fileList}" var="postFile">
 							<tr>
 								<td></td>
-								<td>${postFile.filename}</td>
+								<td>${postFile.filename}&nbsp;&nbsp;<a href="#"><span class="fileSpan glyphicon glyphicon-remove" data-fileNo="${postFile.fileno}"></span></a></td>
 							</tr>
 						</c:forEach>
+						<tr>
+							<td>첨부파일</td>
+							<td><input type="file" multiple="multiple" id="file" name="file"/></td>
+						</tr>
 						<tr>
 							<td></td>
 							<td id="button"><input type="button" id="updateButton" class="btn btn-default pull-right" value="수정" /></td>

@@ -44,8 +44,6 @@ public class LoginController extends HttpServlet {
     */
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-      //webapp/jsp/login.jsp  --> jsp.login.jsp
-
       request.getRequestDispatcher("/login/login.jsp").forward(request, response);
 
    }
@@ -72,9 +70,6 @@ public class LoginController extends HttpServlet {
 
 	   //db에서 조회해온 사용자 정보
 	   User user = userService.getUser(userId);
-
-	   // 사용자가 입력한 파라미터 정보와 db에서 조회해온 값이 동일 할 경우 --> webapp/main.jsp
-	   // 사용자가 입력한 파라미터 정보와 db에서 조회해온 값이 다를 경우 --> webapp/login/login.jsp
 
 	   // db에 존재하지 않는 사용자 체크 --> 로그인 화면으로 이동
 	   if(user == null) {

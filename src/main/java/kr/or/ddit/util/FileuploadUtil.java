@@ -24,9 +24,6 @@ public class FileuploadUtil {
 
 		// 메소드 인자  : "form-data; name\"file\"; filename=\"brown.png\"";
 		String[] attrs = contentDisposition.split("; ");
-		//attrs[0] = form-data
-		//attrs[1] = name="file"
-		//attrs[2] = filename="brown.png"
 
 		String filename = "";
 		for(String attr : attrs) {
@@ -75,21 +72,21 @@ public class FileuploadUtil {
 	 * @return
 	 * Method 설명 : 파일을 업로드 할 경로를 조회한다.
 	 */
-	   public static String getPath() {
+	  public static String getPath() {
 
-	      String basicPath = "e:\\board";
+	     String basicPath = "e:\\board";
 
-	      SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
-	      String yyyyMM = sdf.format(new Date());
-	      String yyyy = yyyyMM.substring(0,4);
-	      String mm = yyyyMM.substring(4,6);
+	     SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
+	     String yyyyMM = sdf.format(new Date());
+	     String yyyy = yyyyMM.substring(0,4);
+	     String mm = yyyyMM.substring(4,6);
 
-	      File yyyyDirectory = new File(basicPath + "\\" + yyyy + "\\" + mm);
-	      if(!yyyyDirectory.exists()) {
-	         yyyyDirectory.mkdirs();
-	      }
-	      return basicPath + "\\" + yyyy + "\\" + mm + "\\";
+	     File yyyyDirectory = new File(basicPath + "\\" + yyyy + "\\" + mm);
+	     if(!yyyyDirectory.exists()) {
+	        yyyyDirectory.mkdirs();
+	     }
+	     return basicPath + "\\" + yyyy + "\\" + mm + "\\";
 
-	   }
+	  }
 
 }

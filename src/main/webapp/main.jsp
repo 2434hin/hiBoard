@@ -33,7 +33,7 @@
 
 				<div class="blog-header">
 					<h1 class="blog-title">hiBoard</h1>
-					<p class="lead blog-description">혜인 게시판</p>
+					<p class="lead blog-description"><span class="glyphicon glyphicon-heart-empty"></span>혜인 게시판<span class="glyphicon glyphicon-heart-empty"></span></p>
 				</div>
 
 				<div class="row">
@@ -41,23 +41,26 @@
 					<div class="col-sm-8 blog-main">
 
 						<div class="blog-post">
+							<hr>
 							<h2 class="blog-post-title">게시판 만들기</h2>
-							<p class="blog-post-meta">2019.08.28, room 202</p>
+							<p class="blog-post-meta">2019.08.28 ~ 2019.09.02 / room 202</p>
 
 							<p>jsp를 통한 웹 프로그래밍 학습</p>
 							<hr>
 
 							<h3>상세내역</h3>
-							<p>게시판 만글기</p>
+							<p>게시판 만글기 요구사항</p>
 							<ul>
-								<li>servlet 동작원리</li>
-								<li>jsp와 servlet의 관계</li>
-								<li>jsp 스크립틀릿 요소</li>
-								<li>jsp action tag (standard)</li>
-								<li>jstl</li>
-								<li>db pooling</li>
-								<li>페이지 모듈화</li>
+								<li>게시판 => 신규 추가, 비황성화</li>
+								<li>게시글 리스트 화면 => 계층 형, 페이징 기능(페이징 사이즈 : 10)</li>
+								<li>게시글 작성 => 첨부파일은 5개 한정</li>
+								<li>게시글 상세화면</li>
+								<li>게시글 수정</li>
+								<li>게시글 삭제 => 삭제 시 DB 내역은 남기기</li>
+								<li>댓글 생성 => 500자 까지만 입력 가능</li>
+								<li>댓글 삭제 => 삭제 시 DB 내역은 남기기</li>
 							</ul>
+							<hr>
 						</div>
 					</div>
 				</div>

@@ -105,4 +105,40 @@ public interface IPostDao {
 	 */
 	int updatePost(SqlSession sqlSession, Post post);
 
+	/**
+	 *
+	 * Method : deleteFile
+	 * 작성자 : PC-11
+	 * 변경이력 :
+	 * @param sqlSession
+	 * @param fileNo
+	 * @return
+	 * Method 설명 : 파일 삭제
+	 */
+	int deleteFile(SqlSession sqlSession, int fileNo);
+
+	/**
+	 *
+	 * Method : getPostTotalCnt
+	 * 작성자 : PC-11
+	 * 변경이력 :
+	 * @param sqlSession
+	 * @param boardNo
+	 * @return
+	 * Method 설명 : 전체 게시글 건수 조회
+	 */
+	int getPostTotalCnt(SqlSession sqlSession, int boardNo);
+
+	/**
+	 *
+	 * Method : getPostFile
+	 * 작성자 : PC-11
+	 * 변경이력 :
+	 * @param sqlSession
+	 * @param fileNo
+	 * @return
+	 * Method 설명 : 선택한 파일 정보 조히
+	 */
+	PostFile getPostFile(SqlSession sqlSession, int fileNo);
+
 }

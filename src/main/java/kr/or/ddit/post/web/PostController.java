@@ -30,9 +30,20 @@ public class PostController extends HttpServlet {
 		replyService = new ReplyService();
 	}
 
+	/**
+	 *
+	 * Method : doGet
+	 * 작성자 : PC-11
+	 * 변경이력 :
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 * Method 설명 : 게시글 상세 조회 화면 이동
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		int postNo = Integer.parseInt(request.getParameter("postNo"));
+		int postNo = Integer.parseInt(request.getParameter("postNo"));	// 게시글 번호
 
 		// 게시글 가져오기
 		Post post = postService.getPost(postNo);
@@ -45,12 +56,8 @@ public class PostController extends HttpServlet {
 		request.setAttribute("fileList", fileList);
 		request.setAttribute("replyList", replyList);
 
+		// 게시글 상세정보 jsp로 이동
 		request.getRequestDispatcher("/post/post.jsp").forward(request, response);
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

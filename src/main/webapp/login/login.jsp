@@ -45,18 +45,17 @@
         <h2 class="form-signin-heading">Please sign in</h2>
 
         <label for="userId" class="sr-only">userId</label>
-
-		<input type="text" id="userId" name="userId"
-				class="form-control" value="brown"/>
+		<!-- 아이디 입력 창 -->
+		<input type="text" id="userId" name="userId" class="form-control" value="brown"/>
 
         <label for="pass" class="sr-only">Password</label>
+		<!-- 비밀번호 입력창 -->
+        <input type="password" id="pass" name="pass" class="form-control" placeholder="Password" required value="brown1234">
 
-        <input type="password" id="pass" name="pass"
-               class="form-control" placeholder="Password" required value="brown1234">
-
+		<!-- 로그인 버튼 -->
         <button id="signinBtn" class="btn btn-lg btn-primary btn-block" type="button">Sign in</button>
       </form>
 
-    </div> <!-- /container -->
+    </div>
   </body>
 </html>

@@ -52,6 +52,20 @@
 				}
 			}
 		})
+
+        $("input[type=file]").change(function () {
+
+            var fileInput = document.getElementById("file");
+
+            var files = fileInput.files;
+
+            if(files.length > 5){
+            	alert("파일은 5개까지 업로드할 수있습니다.");
+            	$('#file').val("");
+            }
+
+        });
+
 	});
 
 	// 필수값 Check
@@ -110,7 +124,7 @@
 					<table>
 						<tr>
 							<td>제목</td>
-							<td><input type="text" id="postTitle" name="postTitle" style="width:750px; height:35px;"/></td>
+							<td><input type="text" id="postTitle" name="postTitle" style="width:760px; height:35px;"/></td>
 						</tr>
 						<tr>
 							<td>글내용</td>
@@ -118,11 +132,11 @@
 						</tr>
 						<tr>
 							<td>첨부파일</td>
-							<td><input type="file" multiple="multiple" id="file" name="file"/></td>
+							<td><input type="file" multiple="multiple" maxlength="5" id="file" name="file"/></td>
 						</tr>
 						<tr>
 							<td></td>
-							<td id="button"><input type="button" id="savebutton" class="btn btn-default pull-right" value="저장" /></td>
+							<td id="button"><input type="button" id="savebutton" class="btn btn-info pull-right" value="저장" /></td>
 						</tr>
 					</table>
 				</form>
