@@ -128,9 +128,9 @@
 							<td></td>
 							<td id="button">
 								<c:choose>
-										<c:when test="${reply.userId == S_USERVO.userId }">
-        									<span id = deleteIcon class="glyphicon glyphicon-remove"></span><br>
-     									</c:when>
+									<c:when test="${reply.userId == S_USERVO.userId }">
+       									<span id = deleteIcon class="glyphicon glyphicon-remove"></span><br>
+   									</c:when>
 
 									<c:when test="${post.userid == S_USERVO.userId }">
 										<input type="button" id="replyPostBtn" class="btn btn-primary pull-right" value="답글" />
